@@ -84,6 +84,7 @@ evals/                              Automated evaluation runner (Bedrock)
   benchmark_config.yaml               Models, prompt, and grading criteria
   pyproject.toml                      Dependencies (use uv sync)
 
+plugin.json                         Agent Plugins 1.0.0 manifest (portable plugin package)
 install.sh                          One-command setup (macOS/Linux)
 install.ps1                         One-command setup (Windows PowerShell)
 ```
@@ -155,6 +156,17 @@ curl -sL .../bootstrap.sh | bash -s -- --tool kiro
 # Windows (PowerShell)
 & ([scriptblock]::Create((irm .../bootstrap.ps1))) -Tool kiro
 ```
+
+#### Via Agent Plugins
+
+This repo is a conformant [Agent Plugins 1.0.0](https://agent-plugins.org/) package: the root [`plugin.json`](plugin.json) manifest wraps the `skills/` core (each `skills/*/SKILL.md` already carries valid [Agent Skills](https://agentskills.io/) frontmatter) into a single portable plugin. Clients that ship a native Agent Plugins loader can install directly from the repository:
+
+```bash
+# Point your Agent Plugins-compatible client at the repository
+https://github.com/aws-samples/sample-well-architected-skills-and-steering
+```
+
+This path is **additive** and does not replace the adapters or install scripts. The plugin is intentionally MCP-free (`mcp.json` is optional in the spec) because the skills read static pillar files rather than calling a server. Kiro-specific behavior (`powers/` and the Kiro agent config) is homed under the `extensions["dev.kiro"]` namespace, keeping the portable core clean. Tool-specific steering and rules translations (`.cursor/rules/`, `.windsurfrules`, `CLAUDE.md`, `.clinerules`, `GEMINI.md`, Copilot instructions) remain in `adapters/`, since they target formats outside the Agent Plugins ecosystem.
 
 ### Install script (from local clone)
 

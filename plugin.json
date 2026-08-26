@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "aws-well-architected",
+  "version": "6.4.0",
+  "description": "Well-Architected skills and steering for AI coding agents: full and pillar-scoped Well-Architected reviews, guardrails, migration readiness, and guided build assistance across all 6 pillars.",
+  "author": {
+    "name": "AWS",
+    "url": "https://github.com/aws-samples"
+  },
+  "homepage": "https://github.com/aws-samples/sample-well-architected-skills-and-steering",
+  "repository": "https://github.com/aws-samples/sample-well-architected-skills-and-steering",
+  "license": "MIT-0",
+  "keywords": [
+    "aws",
+    "well-architected",
+    "operational-excellence",
+    "security",
+    "reliability",
+    "performance-efficiency",
+    "cost-optimization",
+    "sustainability"
+  ],
+  "extensions": {
+    "dev.kiro": {
+      "powers": "./powers",
+      "agent": "./adapters/kiro-cli/agents/well-architected.json"
+    }
+  }
+}
